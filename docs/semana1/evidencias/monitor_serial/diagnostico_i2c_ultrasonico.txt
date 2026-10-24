@@ -1,0 +1,33 @@
+Salida del programa firmware/pruebas/SmartGate_ESP32_Diagnostico (ESP32 grande, COM7, 115200 baudios).
+Escaneo I2C con SDA/SCL en ambos sentidos y lectura cruda del HC-SR04 (TRIG GPIO23, ECHO GPIO25).
+Captura del 23/10/2026. Antes de esta prueba el firmware de la cochera reportaba "ToF VL53L0X: no responde".
+
+I2C SDA=21 SCL=22 -> lineas en reposo SDA=1 SCL=1 | encontrados: NINGUNO
+I2C SDA=22 SCL=21 -> lineas en reposo SDA=1 SCL=1 | encontrados: 0x29  (0x29 = VL53L0X)
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+I2C SDA=21 SCL=22 -> lineas en reposo SDA=1 SCL=1 | encontrados: NINGUNO
+I2C SDA=22 SCL=21 -> lineas en reposo SDA=1 SCL=1 | encontrados: 0x29  (0x29 = VL53L0X)
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+I2C SDA=21 SCL=22 -> lineas en reposo SDA=1 SCL=1 | encontrados: NINGUNO
+I2C SDA=22 SCL=21 -> lineas en reposo SDA=1 SCL=1 | encontrados: 0x29  (0x29 = VL53L0X)
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+I2C SDA=21 SCL=22 -> lineas en reposo SDA=1 SCL=1 | encontrados: NINGUNO
+I2C SDA=22 SCL=21 -> lineas en reposo SDA=1 SCL=1 | encontrados: 0x29  (0x29 = VL53L0X)
+Ultrasonico: ECHO en reposo=0 | pulso=578 us | 99 mm
+Ultrasonico: ECHO en reposo=0 | pulso=683 us | 117 mm
+Ultrasonico: ECHO en reposo=0 | pulso=469 us | 80 mm
+I2C SDA=21 SCL=22 -> lineas en reposo SDA=1 SCL=1 | encontrados: NINGUNO
+I2C SDA=22 SCL=21 -> lineas en reposo SDA=1 SCL=1 | encontrados: 0x29  (0x29 = VL53L0X)
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+Ultrasonico: ECHO en reposo=0 | pulso=0 us | 0 mm
+
+Conclusion: el VL53L0X responde en 0x29 con SDA en GPIO22 y SCL en GPIO21 (cables cruzados);
+se corrigio en el firmware. El HC-SR04 solo devolvia pulso con un objeto cercano: sin objeto, el
+pulso supera la espera de 30 ms. El firmware final amplia la espera y lo interpreta como "sin objeto".

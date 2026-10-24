@@ -1,0 +1,31 @@
+
+>>> 00:01:45 ENVIADO: manual
+Modo MANUAL: solo abrir/cerrar por comando.
+[ALERTA|MANUAL] reed=ABIERTA | ultra=1530 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=165 grados ON
+
+>>> 00:01:46 ENVIADO: estado
+[ALERTA|MANUAL] reed=ABIERTA | ultra=1539 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=165 grados ON
+[ALERTA|MANUAL] reed=ABIERTA | ultra=1534 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=165 grados ON
+
+>>> 00:01:47 ENVIADO: abrir
+>> ABRIENDO: comando manual
+[ABRIENDO|MANUAL] reed=ABIERTA | ultra=1530 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=151 grados ON
+[ABRIENDO|MANUAL] reed=ABIERTA | ultra=1534 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=126 grados ON
+[ABRIENDO|MANUAL] reed=ABIERTA | ultra=1543 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=101 grados ON
+[ABRIENDO|MANUAL] reed=ABIERTA | ultra=1525 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=76 grados ON
+[ABRIENDO|MANUAL] reed=ABIERTA | ultra=1543 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=51 grados ON
+[ABRIENDO|MANUAL] reed=ABIERTA | ultra=1525 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=26 grados ON
+[ABRIENDO|MANUAL] reed=ABIERTA | ultra=1530 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=1 grados ON
+ABIERTA.
+
+>>> 00:01:54 ENVIADO: cerrar
+>> CERRANDO: comando manual
+[CERRANDO|MANUAL] reed=ABIERTA | ultra=1547 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=11 grados ON
+[CERRANDO|MANUAL] reed=ABIERTA | ultra=1530 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=36 grados ON
+[CERRANDO|MANUAL] reed=ABIERTA | ultra=1530 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=61 grados ON
+[CERRANDO|MANUAL] reed=ABIERTA | ultra=1534 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=86 grados ON
+[CERRANDO|MANUAL] reed=ABIERTA | ultra=1530 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=111 grados ON
+[CERRANDO|MANUAL] reed=ABIERTA | ultra=1530 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=136 grados ON
+[CERRANDO|MANUAL] reed=ABIERTA | ultra=1542 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=161 grados ON
+[CERRANDO|MANUAL] reed=ABIERTA | ultra=1543 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=NO | servo=165 grados ON
+
