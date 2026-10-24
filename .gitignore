@@ -1,0 +1,13 @@
+# Credenciales locales (WiFi, broker): nunca subirlas.
+*.local.h
+
+# Compilacion y entornos
+build/
+.venv/
+__pycache__/
+*.pyc
+
+# Sistema y temporales de Office
+.DS_Store
+Thumbs.db
+~$*
