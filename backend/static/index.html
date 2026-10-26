@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e32"><meta name="description" content="Estado y sensores de tu cochera SmartGate en tiempo real.">
+  <title>SmartGate · Mi cochera</title>
+  <link rel="manifest" href="/static/manifest.webmanifest"><link rel="icon" href="/static/icon.svg">
+  <link rel="stylesheet" href="/static/style.css"><script defer src="/static/app.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><a class="brand" href="/" aria-label="SmartGate, inicio"><span class="brand-icon">S<span>G</span></span><span>smartgate<span class="brand-sub">Tu cochera, conectada.</span></span></a><div class="header-actions"><button id="install" class="quiet" hidden>Instalar app</button><span id="serverBadge" class="badge">Conectando</span></div></header>
+    <nav class="tabs" aria-label="Vistas"><button class="tab active" data-view="overview" aria-selected="true">Mi cochera</button><button class="tab" data-view="history" aria-selected="false">Historial</button></nav>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <section class="intro"><div><p class="eyebrow">SMARTGATE / MONITOREO</p><h1>Todo en su lugar.</h1><p class="subtitle">Consulta la puerta y el acceso desde tu teléfono.</p></div><label class="node-picker">Dispositivo<select id="node"><option value="">Esperando dispositivo…</option></select></label></section>
+    <section id="overview">
+      <div class="overview-grid">
+        <article class="garage-card">
+          <div class="card-top"><span class="eyebrow light">ESTADO DE LA PUERTA</span><span id="sourceBadge" class="source">Sin datos</span></div>
+          <div class="garage-scene" aria-hidden="true"><svg viewBox="0 0 420 200"><path class="house" d="M70 175V68L210 15l140 53v107M53 175h314"/><path class="frame" d="M115 175V78h190v97"/><g id="doorDrawing"><path d="M123 92h174M123 110h174M123 128h174M123 146h174M123 164h174"/></g><g id="carDrawing" opacity="0"><path d="M153 167v-24l17-22h78l18 22v24zM156 143h107M174 124l-8 16h85l-7-16"/><circle cx="174" cy="168" r="8"/><circle cx="246" cy="168" r="8"/></g></svg></div>
+          <div class="door-bottom"><div><h2 id="doorState">Esperando lecturas</h2><p id="doorHint">Conecta el dispositivo o inicia el simulador.</p></div><span id="mode" class="mode">—</span></div>
+          <div class="garage-footer"><span><i id="reedDot" class="dot"></i> <span id="reed">Reed sin datos</span></span><span id="angle">—</span></div>
+        </article>
+        <div class="sensor-stack">
+          <article class="sensor-card"><div class="sensor-head"><span class="sensor-symbol exterior-symbol">↗</span><div><h2>Acceso exterior</h2><p>Sensor ultrasónico</p></div><span id="exteriorValidity" class="small-badge">Sin datos</span></div><p class="measurement"><span id="exteriorValue">—</span><span>mm</span></p><div class="sensor-foot"><span id="exteriorZone">Zona sin confirmar</span><span id="exteriorRaw">Crudo: —</span></div></article>
+          <article class="sensor-card"><div class="sensor-head"><span class="sensor-symbol">⌂</span><div><h2>Estacionamiento</h2><p>Sensor ToF interior</p></div><span id="interiorValidity" class="small-badge">Sin datos</span></div><p class="measurement"><span id="interiorValue">—</span><span>mm</span></p><div class="sensor-foot"><span id="interiorZone">Presencia sin confirmar</span><span id="interiorRaw">Crudo: —</span></div></article>
+        </div>
+      </div>
+      <div class="quick-grid"><article class="quick-card"><span id="linkTitle" class="eyebrow">GATEWAY ESP32-C3</span><strong id="tag">Sin datos</strong><span id="rssi">Esperando señal</span></article><article class="quick-card"><span class="eyebrow">CALIDAD DEL ENLACE</span><strong id="loss">—</strong><span id="jitter">Sin estadísticas todavía</span></article><article class="quick-card"><span class="eyebrow">DISPOSITIVO</span><strong id="deviceStatus">Esperando</strong><span id="lastSeen">Sin telemetría recibida</span></article><article class="quick-card"><span class="eyebrow">ÚLTIMA SECUENCIA</span><strong id="sequence">—</strong><span id="clock">Reloj sin confirmar</span></article></div>
+      <section class="charts-section"><div class="section-head"><div><p class="eyebrow">LECTURAS EN VIVO</p><h2>Una señal más clara.</h2></div><div class="legend"><span><i class="legend-line raw"></i>Cruda</span><span><i class="legend-line"></i>Filtrada</span></div></div><div class="charts-grid"><article class="chart-card"><h3>Distancia exterior <span>mm</span></h3><svg id="chartExterior" viewBox="0 0 540 200" role="img" aria-label="Gráfica de distancia exterior cruda y filtrada"></svg></article><article class="chart-card"><h3>Distancia interior <span>mm</span></h3><svg id="chartInterior" viewBox="0 0 540 200" role="img" aria-label="Gráfica de distancia interior cruda y filtrada"></svg></article></div></section>
+      <div class="bottom-note"><span>Promedio móvil de 5 muestras · Últimas 120 lecturas</span><button id="showPayload" class="text-button" disabled>Ver payload JSON ↗</button></div>
+    </section>
+    <section id="history" hidden><div class="section-head"><div><p class="eyebrow">REGISTROS PERSISTIDOS</p><h2>El recorrido de tus datos.</h2></div><a id="export" class="quiet" href="/api/export.csv">Descargar CSV</a></div><p id="historyHint" class="subtitle">Últimos 120 registros del dispositivo seleccionado.</p><div class="table-wrap"><table><thead><tr><th>Recibido</th><th>Origen</th><th>Secuencia</th><th>Exterior</th><th>Interior</th><th>Puerta</th></tr></thead><tbody id="historyRows"></tbody></table></div></section>
+    <footer>SmartGate IoT <span>ESP32 → gateway C3 → MQTT → FastAPI → WebSocket · CETI Colomos</span></footer>
+  </main>
+  <dialog id="payloadDialog"><div class="section-head"><h2>Último payload</h2><button id="closePayload" class="quiet">Cerrar</button></div><p class="subtitle">Incluye fecha de recepción y latencia agregadas por el backend.</p><pre id="payloadText"></pre></dialog>
+</body></html>
