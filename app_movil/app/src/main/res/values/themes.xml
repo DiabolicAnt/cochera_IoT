@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SmartGate" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/fondo</item>
+    </style>
+    <color name="fondo">#FFF4F3EE</color>
+    <color name="icono_fondo">#FF173E32</color>
+</resources>
