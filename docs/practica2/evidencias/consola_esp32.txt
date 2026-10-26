@@ -1,0 +1,9 @@
+[CERRADA|AUTO] reed=CERRADA | ultra=4000 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+[CERRADA|AUTO] reed=CERRADA | ultra=4000 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+[CERRADA|AUTO] reed=CERRADA | ultra=4000 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+[CERRADA|AUTO] reed=CERRADA | ultra=4000 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+[CERRADA|AUTO] reed=CERRADA | ultra=1850 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+[CERRADA|AUTO] reed=CERRADA | ultra=4000 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+[CERRADA|AUTO] reed=CERRADA | ultra=4000 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+[CERRADA|AUTO] reed=CERRADA | ultra=1846 mm | tof=vacio(fuera de alcance) | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+

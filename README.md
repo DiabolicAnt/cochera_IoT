@@ -24,14 +24,35 @@ Lizeth Alexandra Esquivies Torres (23310409) · Caleb Berumen Estrada (23310408)
 
 La ESP32 se reinicia (brownout) al encender su radio, por eso este firmware no usa BLE ni WiFi.
 
+## Práctica 2: middleware MQTT + FastAPI + WebSockets + app móvil
+
+```text
+ESP32 (sensores, filtro, puerta) --UART GPIO17 -> GPIO20--> ESP32-C3 gateway (WiFi, NTP, MQTT QoS 0/1)
+  --> Mosquitto --> FastAPI (validación, SQLite, /stats) --> WebSocket /ws/telemetria --> app Android
+```
+
+Como la ESP32 no puede encender su radio, una ESP32-C3 SuperMini publica por ella. Solo hacen falta dos cables: **TX2 (GPIO17) de la ESP32 → RX (GPIO20) de la C3** y **GND con GND**.
+
+1. **Broker:** `mosquitto -c backend/mosquitto.windows.conf -v`
+2. **Backend:** `pip install -r backend/requirements.txt` y luego `uvicorn main:app --app-dir backend --host 0.0.0.0 --port 8000`. Pruebas: `python -m unittest discover -s backend/tests`.
+3. **Gateway:** copia `SmartGate_Gateway_Config.h` como `SmartGate_Gateway_Config.local.h` (Git lo ignora) y pon tu WiFi de 2.4 GHz y la IP de la laptop. Placa **ESP32C3 Dev Module** con **USB CDC On Boot: Enabled**.
+4. **App:** abre `app_movil` en Android Studio o compila con `gradlew assembleDebug`. En la app escribe `IP_de_la_laptop:8000` y toca **Conectar**.
+5. **Firewall de Windows:** permitir entrada TCP en los puertos 1883 y 8000 en la red local.
+
+La app muestra el estado de la puerta, si hay coche dentro y las lecturas del ultrasónico y del ToF, y avisa con notificaciones: *Se está abriendo la cochera*, *La cochera está abierta* y *Se cerró la cochera*.
+
 ## Contenido
 
 | Carpeta | Qué hay |
 |---|---|
 | `firmware/SmartGate_ESP32_Cochera` | Firmware del nodo sensor y control de la puerta |
+| `firmware/SmartGate_C3_Gateway` | Gateway WiFi/MQTT (QoS configurable) |
 | `firmware/pruebas/SmartGate_ESP32_Diagnostico` | Escaneo I2C y lectura cruda del ultrasónico |
 | `firmware/pruebas/SmartGate_C3_PruebaServo` | Prueba aislada del servo |
+| `backend` | FastAPI, modelos Pydantic, dashboard web, simulador, pruebas y configuración de Mosquitto |
+| `app_movil` | App Android SmartGate (Kotlin + Jetpack Compose) |
 | `docs/semana1` | Reporte de la semana 1 y evidencias (fotos y monitor serie) |
+| `docs/practica2` | Reporte de la práctica 2 y evidencias (consolas, capturas, experimento de QoS) |
 
 ## Compilar y cargar
 

@@ -1,0 +1,210 @@
+
+=== SMARTGATE GATEWAY C3 | QoS 0 | TX 2.0 dBm | mqtt://192.168.100.13:1883 ===
+MQTT desconectado; reintentando.
+WiFi conectado: IP 192.168.100.23, RSSI -57 dBm
+MQTT conectado.
+PUB seq=871 qos=0 publish=1281 us
+PUB seq=872 qos=0 publish=633 us
+RESUMEN uart=9 pub=2 ack=1 desc=7 wifi=SI mqtt=SI rssi=-56 loop_max=5374 us ultima_linea_hace=493 ms
+PUB seq=873 qos=0 publish=1068 us
+PUB seq=874 qos=0 publish=1496 us
+PUB seq=875 qos=0 publish=1483 us
+PUB seq=876 qos=0 publish=1492 us
+PUB seq=877 qos=0 publish=1486 us
+PUB seq=878 qos=0 publish=1458 us
+PUB seq=879 qos=0 publish=1460 us
+PUB seq=880 qos=0 publish=1217 us
+PUB seq=881 qos=0 publish=1454 us
+PUB seq=882 qos=0 publish=1457 us
+RESUMEN uart=19 pub=12 ack=1 desc=7 wifi=SI mqtt=SI rssi=-59 loop_max=6085 us ultima_linea_hace=477 ms
+PUB seq=883 qos=0 publish=1460 us
+PUB seq=884 qos=0 publish=1454 us
+PUB seq=885 qos=0 publish=1455 us
+PUB seq=886 qos=0 publish=1457 us
+PUB seq=887 qos=0 publish=1463 us
+PUB seq=888 qos=0 publish=1458 us
+PUB seq=889 qos=0 publish=1579 us
+PUB seq=890 qos=0 publish=1218 us
+PUB seq=891 qos=0 publish=1447 us
+PUB seq=892 qos=0 publish=1465 us
+RESUMEN uart=29 pub=22 ack=1 desc=7 wifi=SI mqtt=SI rssi=-61 loop_max=5023 us ultima_linea_hace=467 ms
+PUB seq=893 qos=0 publish=1457 us
+PUB seq=894 qos=0 publish=1458 us
+PUB seq=895 qos=0 publish=1448 us
+PUB seq=896 qos=0 publish=1458 us
+PUB seq=897 qos=0 publish=1458 us
+PUB seq=898 qos=0 publish=1456 us
+PUB seq=899 qos=0 publish=1442 us
+PUB seq=900 qos=0 publish=1218 us
+PUB seq=901 qos=0 publish=1446 us
+PUB seq=902 qos=0 publish=1462 us
+RESUMEN uart=39 pub=32 ack=1 desc=7 wifi=SI mqtt=SI rssi=-57 loop_max=4534 us ultima_linea_hace=444 ms
+PUB seq=903 qos=0 publish=1457 us
+PUB seq=904 qos=0 publish=1250 us
+PUB seq=905 qos=0 publish=1203 us
+PUB seq=906 qos=0 publish=1219 us
+PUB seq=907 qos=0 publish=1449 us
+PUB seq=908 qos=0 publish=1241 us
+PUB seq=909 qos=0 publish=1211 us
+PUB seq=910 qos=0 publish=1218 us
+PUB seq=911 qos=0 publish=1190 us
+PUB seq=912 qos=0 publish=1461 us
+RESUMEN uart=49 pub=42 ack=1 desc=7 wifi=SI mqtt=SI rssi=-60 loop_max=4593 us ultima_linea_hace=426 ms
+PUB seq=913 qos=0 publish=1451 us
+PUB seq=914 qos=0 publish=1248 us
+PUB seq=915 qos=0 publish=1458 us
+PUB seq=916 qos=0 publish=1231 us
+PUB seq=917 qos=0 publish=1456 us
+PUB seq=918 qos=0 publish=1201 us
+PUB seq=919 qos=0 publish=1462 us
+PUB seq=920 qos=0 publish=1242 us
+PUB seq=921 qos=0 publish=1249 us
+PUB seq=922 qos=0 publish=1250 us
+RESUMEN uart=59 pub=52 ack=1 desc=7 wifi=SI mqtt=SI rssi=-62 loop_max=4582 us ultima_linea_hace=394 ms
+PUB seq=923 qos=0 publish=1457 us
+PUB seq=924 qos=0 publish=1236 us
+PUB seq=925 qos=0 publish=1235 us
+PUB seq=926 qos=0 publish=1458 us
+PUB seq=927 qos=0 publish=1190 us
+PUB seq=928 qos=0 publish=1603 us
+PUB seq=929 qos=0 publish=617 us
+PUB seq=930 qos=0 publish=1243 us
+PUB seq=931 qos=0 publish=1193 us
+PUB seq=932 qos=0 publish=1736 us
+RESUMEN uart=69 pub=62 ack=1 desc=7 wifi=SI mqtt=SI rssi=-63 loop_max=4506 us ultima_linea_hace=362 ms
+PUB seq=933 qos=0 publish=631 us
+PUB seq=934 qos=0 publish=1249 us
+PUB seq=935 qos=0 publish=586 us
+PUB seq=936 qos=0 publish=4029398 us
+PUB seq=937 qos=0 publish=636 us
+PUB seq=938 qos=0 publish=570 us
+PUB seq=939 qos=0 publish=1227 us
+PUB seq=940 qos=0 publish=636 us
+PUB seq=941 qos=0 publish=571 us
+PUB seq=942 qos=0 publish=1205 us
+PUB seq=943 qos=0 publish=1871 us
+PUB seq=944 qos=0 publish=579 us
+RESUMEN uart=81 pub=74 ack=1 desc=7 wifi=SI mqtt=SI rssi=-59 loop_max=3814 us ultima_linea_hace=2 ms
+PUB seq=945 qos=0 publish=1456 us
+PUB seq=946 qos=0 publish=1457 us
+PUB seq=947 qos=0 publish=1459 us
+PUB seq=948 qos=0 publish=1208 us
+PUB seq=949 qos=0 publish=1208 us
+PUB seq=950 qos=0 publish=1229 us
+PUB seq=951 qos=0 publish=1235 us
+PUB seq=952 qos=0 publish=1246 us
+PUB seq=953 qos=0 publish=1490 us
+PUB seq=954 qos=0 publish=1218 us
+RESUMEN uart=91 pub=84 ack=1 desc=7 wifi=SI mqtt=SI rssi=-59 loop_max=4115231 us ultima_linea_hace=81 ms
+PUB seq=955 qos=0 publish=1465 us
+PUB seq=956 qos=0 publish=2309 us
+PUB seq=957 qos=0 publish=1457 us
+PUB seq=958 qos=0 publish=1196 us
+PUB seq=959 qos=0 publish=1236 us
+PUB seq=960 qos=0 publish=2926 us
+PUB seq=961 qos=0 publish=1461 us
+PUB seq=962 qos=0 publish=1458 us
+PUB seq=963 qos=0 publish=1463 us
+PUB seq=964 qos=0 publish=1247 us
+RESUMEN uart=101 pub=94 ack=1 desc=7 wifi=SI mqtt=SI rssi=-53 loop_max=5757 us ultima_linea_hace=58 ms
+PUB seq=965 qos=0 publish=1248 us
+PUB seq=966 qos=0 publish=1219 us
+PUB seq=967 qos=0 publish=1211 us
+PUB seq=968 qos=0 publish=1463 us
+PUB seq=969 qos=0 publish=1460 us
+PUB seq=970 qos=0 publish=1236 us
+PUB seq=971 qos=0 publish=1460 us
+PUB seq=972 qos=0 publish=1461 us
+PUB seq=973 qos=0 publish=1463 us
+PUB seq=974 qos=0 publish=1600 us
+RESUMEN uart=111 pub=104 ack=1 desc=7 wifi=SI mqtt=SI rssi=-55 loop_max=4739 us ultima_linea_hace=47 ms
+PUB seq=975 qos=0 publish=1463 us
+PUB seq=976 qos=0 publish=1457 us
+PUB seq=977 qos=0 publish=1456 us
+PUB seq=978 qos=0 publish=1457 us
+PUB seq=979 qos=0 publish=1249 us
+PUB seq=980 qos=0 publish=1460 us
+PUB seq=981 qos=0 publish=1460 us
+PUB seq=982 qos=0 publish=1462 us
+PUB seq=983 qos=0 publish=1266 us
+PUB seq=984 qos=0 publish=1459 us
+RESUMEN uart=121 pub=114 ack=1 desc=7 wifi=SI mqtt=SI rssi=-59 loop_max=4626 us ultima_linea_hace=34 ms
+PUB seq=985 qos=0 publish=1461 us
+PUB seq=986 qos=0 publish=1460 us
+PUB seq=987 qos=0 publish=1457 us
+PUB seq=988 qos=0 publish=1462 us
+PUB seq=989 qos=0 publish=1458 us
+PUB seq=990 qos=0 publish=1457 us
+PUB seq=991 qos=0 publish=1457 us
+PUB seq=992 qos=0 publish=1458 us
+PUB seq=993 qos=0 publish=1458 us
+PUB seq=994 qos=0 publish=1217 us
+RESUMEN uart=131 pub=124 ack=1 desc=7 wifi=SI mqtt=SI rssi=-57 loop_max=4520 us ultima_linea_hace=9 ms
+PUB seq=995 qos=0 publish=1457 us
+PUB seq=996 qos=0 publish=1465 us
+PUB seq=997 qos=0 publish=1460 us
+PUB seq=998 qos=0 publish=1463 us
+PUB seq=999 qos=0 publish=1458 us
+PUB seq=1000 qos=0 publish=1463 us
+PUB seq=1001 qos=0 publish=1456 us
+PUB seq=1002 qos=0 publish=1463 us
+PUB seq=1003 qos=0 publish=1460 us
+RESUMEN uart=140 pub=133 ack=1 desc=7 wifi=SI mqtt=SI rssi=-59 loop_max=4672 us ultima_linea_hace=475 ms
+PUB seq=1004 qos=0 publish=1465 us
+PUB seq=1005 qos=0 publish=1460 us
+PUB seq=1006 qos=0 publish=1543 us
+PUB seq=1007 qos=0 publish=1457 us
+PUB seq=1008 qos=0 publish=1462 us
+PUB seq=1009 qos=0 publish=1460 us
+PUB seq=1010 qos=0 publish=1180 us
+PUB seq=1011 qos=0 publish=1464 us
+PUB seq=1012 qos=0 publish=1467 us
+PUB seq=1013 qos=0 publish=1457 us
+RESUMEN uart=150 pub=143 ack=1 desc=7 wifi=SI mqtt=SI rssi=-58 loop_max=5974 us ultima_linea_hace=460 ms
+PUB seq=1014 qos=0 publish=1610 us
+PUB seq=1015 qos=0 publish=1219 us
+PUB seq=1016 qos=0 publish=1460 us
+PUB seq=1017 qos=0 publish=1463 us
+PUB seq=1018 qos=0 publish=1462 us
+PUB seq=1019 qos=0 publish=1466 us
+PUB seq=1020 qos=0 publish=1459 us
+PUB seq=1021 qos=0 publish=1463 us
+PUB seq=1022 qos=0 publish=1459 us
+PUB seq=1023 qos=0 publish=1462 us
+RESUMEN uart=160 pub=153 ack=1 desc=7 wifi=SI mqtt=SI rssi=-58 loop_max=5018 us ultima_linea_hace=442 ms
+PUB seq=1024 qos=0 publish=1457 us
+PUB seq=1025 qos=0 publish=1463 us
+PUB seq=1026 qos=0 publish=1216 us
+PUB seq=1027 qos=0 publish=1467 us
+PUB seq=1028 qos=0 publish=1464 us
+PUB seq=1029 qos=0 publish=1462 us
+PUB seq=1030 qos=0 publish=1463 us
+PUB seq=1031 qos=0 publish=1464 us
+PUB seq=1032 qos=0 publish=1463 us
+PUB seq=1033 qos=0 publish=1462 us
+RESUMEN uart=170 pub=163 ack=1 desc=7 wifi=SI mqtt=SI rssi=-60 loop_max=5542 us ultima_linea_hace=417 ms
+PUB seq=1034 qos=0 publish=1457 us
+PUB seq=1035 qos=0 publish=1467 us
+PUB seq=1036 qos=0 publish=1266 us
+PUB seq=1037 qos=0 publish=1462 us
+PUB seq=1038 qos=0 publish=1459 us
+PUB seq=1039 qos=0 publish=1459 us
+PUB seq=1040 qos=0 publish=1459 us
+PUB seq=1041 qos=0 publish=1456 us
+PUB seq=1042 qos=0 publish=1462 us
+PUB seq=1043 qos=0 publish=1456 us
+RESUMEN uart=180 pub=173 ack=1 desc=7 wifi=SI mqtt=SI rssi=-60 loop_max=4546 us ultima_linea_hace=404 ms
+PUB seq=1044 qos=0 publish=1459 us
+PUB seq=1045 qos=0 publish=1280 us
+PUB seq=1046 qos=0 publish=1456 us
+PUB seq=1047 qos=0 publish=1464 us
+PUB seq=1048 qos=0 publish=1455 us
+PUB seq=1049 qos=0 publish=1466 us
+PUB seq=1050 qos=0 publish=1463 us
+PUB seq=1051 qos=0 publish=1459 us
+PUB seq=1052 qos=0 publish=1458 us
+PUB seq=1053 qos=0 publish=1464 us
+RESUMEN uart=190 pub=183 ack=1 desc=7 wifi=SI mqtt=SI rssi=-57 loop_max=4633 us ultima_linea_hace=390 ms
+PUB seq=1054 qos=0 publish=1459 us
+PUB seq=1055 qos=0 publish=1218 us
+

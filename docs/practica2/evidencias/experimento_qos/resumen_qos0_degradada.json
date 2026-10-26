@@ -1,0 +1,17 @@
+{
+  "corrida": "qos0_degradada",
+  "qos": 0,
+  "tx": "WIFI_POWER_2dBm",
+  "recibidos": 180,
+  "perdidos": 0,
+  "perdida_pct": 0.0,
+  "intervalo_ms": 500.1,
+  "jitter_ms": 326.7,
+  "publish_us_prom": 23760,
+  "publish_us_max": 4029398,
+  "loop_max_us_max": 4115231.0,
+  "rssi_prom": -58.5,
+  "latencia_cruda_prom_ms": 1076.0,
+  "latencia_cruda_max_ms": 7967.0,
+  "pub_ack_final": "183/1"
+}

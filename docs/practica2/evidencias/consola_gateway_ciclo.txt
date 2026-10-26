@@ -1,0 +1,218 @@
+﻿17:46:26.387 PUB seq=19946 qos=1 publish=1503 us
+17:46:26.406 PUB seq=19947 qos=1 publish=1506 us
+17:46:26.407 RESUMEN uart=49 pub=36 ack=37 desc=14 wifi=SI mqtt=SI ultima_linea_hace=267 ms
+17:46:26.407 PUB seq=19948 qos=1 publish=1507 us
+17:46:26.407 PUB seq=19949 qos=1 publish=1500 us
+17:46:26.407 PUB seq=19950 qos=1 publish=1507 us
+17:46:26.855 PUB seq=20146 qos=1 publish=1620 us
+17:46:27.181 RESUMEN uart=248 pub=235 ack=236 desc=14 wifi=SI mqtt=SI ultima_linea_hace=364 ms
+17:46:27.292 PUB seq=20147 qos=1 publish=1533 us
+17:46:27.835 PUB seq=20148 qos=1 publish=1619 us
+17:46:28.272 PUB seq=20149 qos=1 publish=1528 us
+17:46:28.820 PUB seq=20150 qos=1 publish=1533 us
+17:46:29.365 PUB seq=20151 qos=1 publish=1676 us
+17:46:29.801 PUB seq=20152 qos=1 publish=1527 us
+17:46:30.346 PUB seq=20153 qos=1 publish=1533 us
+17:46:30.782 PUB seq=20154 qos=1 publish=1537 us
+17:46:31.327 PUB seq=20155 qos=1 publish=1537 us
+17:46:31.892 PUB seq=20156 qos=1 publish=1286 us
+17:46:32.218 RESUMEN uart=258 pub=245 ack=246 desc=14 wifi=SI mqtt=SI ultima_linea_hace=335 ms
+17:46:32.327 PUB seq=20157 qos=1 publish=1537 us
+17:46:32.875 PUB seq=20158 qos=1 publish=1536 us
+17:46:33.312 PUB seq=20159 qos=1 publish=1535 us
+17:46:33.862 PUB seq=20160 qos=1 publish=1536 us
+17:46:34.302 PUB seq=20161 qos=1 publish=1537 us
+17:46:34.850 PUB seq=20162 qos=1 publish=1537 us
+17:46:35.394 PUB seq=20163 qos=1 publish=1535 us
+17:46:35.835 PUB seq=20164 qos=1 publish=1536 us
+17:46:36.385 PUB seq=20165 qos=1 publish=1536 us
+17:46:36.931 PUB seq=20166 qos=1 publish=1538 us
+17:46:37.149 RESUMEN uart=268 pub=255 ack=256 desc=14 wifi=SI mqtt=SI ultima_linea_hace=297 ms
+17:46:37.368 PUB seq=20167 qos=1 publish=1623 us
+17:46:37.910 PUB seq=20168 qos=1 publish=1258 us
+17:46:38.348 PUB seq=20169 qos=1 publish=1508 us
+17:46:38.895 PUB seq=20170 qos=1 publish=1506 us
+17:46:39.335 PUB seq=20171 qos=1 publish=1510 us
+17:46:39.880 PUB seq=20172 qos=1 publish=1508 us
+17:46:40.425 PUB seq=20173 qos=1 publish=1506 us
+17:46:40.861 PUB seq=20174 qos=1 publish=1508 us
+17:46:41.406 PUB seq=20175 qos=1 publish=1508 us
+17:46:41.955 PUB seq=20176 qos=1 publish=1508 us
+17:46:42.173 RESUMEN uart=278 pub=265 ack=266 desc=14 wifi=SI mqtt=SI ultima_linea_hace=265 ms
+17:46:42.390 PUB seq=20177 qos=1 publish=1508 us
+17:46:42.938 PUB seq=20178 qos=1 publish=1509 us
+17:46:43.371 PUB seq=20179 qos=1 publish=1504 us
+17:46:43.920 PUB seq=20180 qos=1 publish=1510 us
+17:46:44.472 PUB seq=20181 qos=1 publish=1508 us
+17:46:44.905 PUB seq=20182 qos=1 publish=1506 us
+17:46:45.451 PUB seq=20183 qos=1 publish=1506 us
+17:46:45.888 PUB seq=20184 qos=1 publish=1500 us
+17:46:46.434 PUB seq=20185 qos=1 publish=1507 us
+17:46:46.985 PUB seq=20186 qos=1 publish=1507 us
+17:46:47.205 RESUMEN uart=288 pub=275 ack=276 desc=14 wifi=SI mqtt=SI ultima_linea_hace=241 ms
+17:46:47.426 PUB seq=20187 qos=1 publish=1503 us
+17:46:47.974 PUB seq=20188 qos=1 publish=1508 us
+17:46:48.410 PUB seq=20189 qos=1 publish=1507 us
+17:46:48.951 PUB seq=20190 qos=1 publish=1260 us
+17:46:49.389 PUB seq=20191 qos=1 publish=1507 us
+17:46:49.937 PUB seq=20192 qos=1 publish=1507 us
+17:46:50.486 PUB seq=20193 qos=1 publish=1499 us
+17:46:50.925 PUB seq=20194 qos=1 publish=1508 us
+17:46:51.489 PUB seq=20195 qos=1 publish=1508 us
+17:46:51.928 PUB seq=20196 qos=1 publish=1507 us
+17:46:52.146 RESUMEN uart=298 pub=285 ack=286 desc=14 wifi=SI mqtt=SI ultima_linea_hace=218 ms
+17:46:52.478 PUB seq=20197 qos=1 publish=1502 us
+17:46:52.919 PUB seq=20198 qos=1 publish=1507 us
+17:46:53.467 PUB seq=20199 qos=1 publish=1508 us
+17:46:54.013 PUB seq=20200 qos=1 publish=1504 us
+17:46:54.449 PUB seq=20201 qos=1 publish=1261 us
+17:46:54.995 PUB seq=20202 qos=1 publish=1507 us
+17:46:55.432 PUB seq=20203 qos=1 publish=1509 us
+17:46:55.979 PUB seq=20204 qos=1 publish=1506 us
+17:46:56.523 PUB seq=20205 qos=1 publish=1506 us
+17:46:56.963 PUB seq=20206 qos=1 publish=1509 us
+17:46:57.181 RESUMEN uart=308 pub=295 ack=296 desc=14 wifi=SI mqtt=SI ultima_linea_hace=202 ms
+17:46:57.509 PUB seq=20207 qos=1 publish=1509 us
+17:46:57.948 PUB seq=20208 qos=1 publish=1593 us
+17:46:58.501 PUB seq=20209 qos=1 publish=1509 us
+17:46:58.942 PUB seq=20210 qos=1 publish=1292 us
+17:46:59.488 PUB seq=20211 qos=1 publish=1594 us
+17:46:59.926 PUB seq=20212 qos=1 publish=1591 us
+17:47:00.469 PUB seq=20213 qos=1 publish=1507 us
+17:47:01.019 PUB seq=20214 qos=1 publish=1505 us
+17:47:01.459 PUB seq=20215 qos=1 publish=1590 us
+17:47:02.008 PUB seq=20216 qos=1 publish=1508 us
+17:47:02.119 RESUMEN uart=318 pub=305 ack=306 desc=14 wifi=SI mqtt=SI ultima_linea_hace=188 ms
+17:47:02.446 PUB seq=20217 qos=1 publish=1507 us
+17:47:02.998 PUB seq=20218 qos=1 publish=1507 us
+17:47:03.536 PUB seq=20219 qos=1 publish=1510 us
+17:47:03.972 PUB seq=20220 qos=1 publish=1260 us
+17:47:04.524 PUB seq=20221 qos=1 publish=1507 us
+17:47:04.962 PUB seq=20222 qos=1 publish=1504 us
+17:47:05.507 PUB seq=20223 qos=1 publish=1508 us
+17:47:06.052 PUB seq=20224 qos=1 publish=1503 us
+17:47:06.489 PUB seq=20225 qos=1 publish=1505 us
+17:47:07.032 PUB seq=20226 qos=1 publish=1508 us
+17:47:07.142 RESUMEN uart=328 pub=315 ack=316 desc=14 wifi=SI mqtt=SI ultima_linea_hace=155 ms
+17:47:07.470 PUB seq=20227 qos=1 publish=1509 us
+17:47:08.032 PUB seq=20228 qos=1 publish=1507 us
+17:47:08.466 PUB seq=20229 qos=1 publish=1509 us
+17:47:09.013 PUB seq=20230 qos=1 publish=1501 us
+17:47:09.561 PUB seq=20231 qos=1 publish=1260 us
+17:47:09.997 PUB seq=20232 qos=1 publish=1501 us
+17:47:10.545 PUB seq=20233 qos=1 publish=1510 us
+17:47:10.989 PUB seq=20234 qos=1 publish=1507 us
+17:47:11.538 PUB seq=20235 qos=1 publish=1511 us
+17:47:12.086 PUB seq=20236 qos=1 publish=1507 us
+17:47:12.195 RESUMEN uart=338 pub=325 ack=326 desc=14 wifi=SI mqtt=SI ultima_linea_hace=139 ms
+17:47:12.523 PUB seq=20237 qos=1 publish=1507 us
+17:47:13.068 PUB seq=20238 qos=1 publish=1507 us
+17:47:13.506 PUB seq=20239 qos=1 publish=1509 us
+17:47:14.051 PUB seq=20240 qos=1 publish=1506 us
+17:47:14.595 PUB seq=20241 qos=1 publish=1508 us
+17:47:15.033 PUB seq=20242 qos=1 publish=1263 us
+17:47:15.578 PUB seq=20243 qos=1 publish=1511 us
+17:47:16.015 PUB seq=20244 qos=1 publish=1508 us
+17:47:16.584 PUB seq=20245 qos=1 publish=1509 us
+17:47:17.013 PUB seq=20246 qos=1 publish=1506 us
+17:47:17.124 RESUMEN uart=348 pub=335 ack=336 desc=14 wifi=SI mqtt=SI ultima_linea_hace=106 ms
+17:47:17.564 PUB seq=20247 qos=1 publish=1608 us
+17:47:18.112 PUB seq=20248 qos=1 publish=1500 us
+17:47:18.556 PUB seq=20249 qos=1 publish=1344 us
+17:47:19.100 PUB seq=20250 qos=1 publish=1497 us
+17:47:19.535 PUB seq=20251 qos=1 publish=1503 us
+17:47:20.082 PUB seq=20252 qos=1 publish=1505 us
+17:47:20.630 PUB seq=20253 qos=1 publish=1505 us
+17:47:21.067 PUB seq=20254 qos=1 publish=1270 us
+17:47:21.619 PUB seq=20255 qos=1 publish=1508 us
+17:47:22.056 PUB seq=20256 qos=1 publish=1508 us
+17:47:22.166 RESUMEN uart=358 pub=345 ack=346 desc=14 wifi=SI mqtt=SI ultima_linea_hace=75 ms
+17:47:22.605 PUB seq=20257 qos=1 publish=1508 us
+17:47:23.150 PUB seq=20258 qos=1 publish=1536 us
+17:47:23.587 PUB seq=20259 qos=1 publish=1537 us
+17:47:24.134 PUB seq=20260 qos=1 publish=1536 us
+17:47:24.571 PUB seq=20261 qos=1 publish=1537 us
+17:47:25.118 PUB seq=20262 qos=1 publish=1537 us
+17:47:25.666 PUB seq=20263 qos=1 publish=1536 us
+17:47:26.105 PUB seq=20264 qos=1 publish=1537 us
+17:47:26.651 PUB seq=20265 qos=1 publish=1537 us
+17:47:27.092 PUB seq=20266 qos=1 publish=1261 us
+17:47:27.202 RESUMEN uart=368 pub=355 ack=356 desc=14 wifi=SI mqtt=SI ultima_linea_hace=36 ms
+17:47:27.641 PUB seq=20267 qos=1 publish=1510 us
+17:47:28.184 PUB seq=20268 qos=1 publish=1505 us
+17:47:28.624 PUB seq=20269 qos=1 publish=1508 us
+17:47:29.175 PUB seq=20270 qos=1 publish=1507 us
+17:47:29.619 PUB seq=20271 qos=1 publish=1508 us
+17:47:30.168 PUB seq=20272 qos=1 publish=1508 us
+17:47:30.716 PUB seq=20273 qos=1 publish=1509 us
+17:47:31.149 PUB seq=20274 qos=1 publish=1508 us
+17:47:31.698 PUB seq=20275 qos=1 publish=1510 us
+17:47:32.140 RESUMEN uart=377 pub=364 ack=365 desc=14 wifi=SI mqtt=SI ultima_linea_hace=456 ms
+17:47:32.251 PUB seq=20276 qos=1 publish=1509 us
+17:47:32.799 PUB seq=20277 qos=1 publish=1508 us
+17:47:33.239 PUB seq=20278 qos=1 publish=1262 us
+17:47:33.788 PUB seq=20279 qos=1 publish=1499 us
+17:47:34.331 PUB seq=20280 qos=1 publish=1645 us
+17:47:34.882 PUB seq=20281 qos=1 publish=1506 us
+17:47:35.320 PUB seq=20282 qos=1 publish=1508 us
+17:47:35.865 PUB seq=20283 qos=1 publish=1482 us
+17:47:36.303 PUB seq=20284 qos=1 publish=1509 us
+17:47:36.851 PUB seq=20285 qos=1 publish=1506 us
+17:47:37.181 RESUMEN uart=387 pub=374 ack=375 desc=14 wifi=SI mqtt=SI ultima_linea_hace=342 ms
+17:47:37.290 PUB seq=20286 qos=1 publish=1508 us
+17:47:37.841 PUB seq=20287 qos=1 publish=1507 us
+17:47:38.281 PUB seq=20288 qos=1 publish=1504 us
+17:47:38.828 PUB seq=20289 qos=1 publish=1507 us
+17:47:39.378 PUB seq=20290 qos=1 publish=1507 us
+17:47:39.812 PUB seq=20291 qos=1 publish=1511 us
+17:47:40.359 PUB seq=20292 qos=1 publish=1271 us
+17:47:40.798 PUB seq=20293 qos=1 publish=1506 us
+17:47:41.347 PUB seq=20294 qos=1 publish=1508 us
+17:47:41.896 PUB seq=20295 qos=1 publish=1500 us
+17:47:42.222 RESUMEN uart=397 pub=384 ack=385 desc=14 wifi=SI mqtt=SI ultima_linea_hace=319 ms
+17:47:42.440 PUB seq=20296 qos=1 publish=1502 us
+17:47:42.984 PUB seq=20297 qos=1 publish=1504 us
+17:47:43.423 PUB seq=20298 qos=1 publish=1506 us
+17:47:43.970 PUB seq=20299 qos=1 publish=1501 us
+17:47:44.515 PUB seq=20300 qos=1 publish=1503 us
+17:47:45.065 PUB seq=20301 qos=1 publish=1504 us
+17:47:45.502 PUB seq=20302 qos=1 publish=1502 us
+17:47:46.045 PUB seq=20303 qos=1 publish=1504 us
+17:47:46.596 PUB seq=20304 qos=1 publish=1506 us
+17:47:47.037 PUB seq=20305 qos=1 publish=1497 us
+17:47:47.144 RESUMEN uart=407 pub=394 ack=395 desc=14 wifi=SI mqtt=SI ultima_linea_hace=126 ms
+17:47:47.581 PUB seq=20306 qos=1 publish=1504 us
+17:47:48.016 PUB seq=20307 qos=1 publish=1505 us
+17:47:48.563 PUB seq=20308 qos=1 publish=1497 us
+17:47:49.002 PUB seq=20309 qos=1 publish=1261 us
+17:47:49.550 PUB seq=20310 qos=1 publish=1638 us
+17:47:50.100 PUB seq=20311 qos=1 publish=1505 us
+17:47:50.537 PUB seq=20312 qos=1 publish=1502 us
+17:47:51.081 PUB seq=20313 qos=1 publish=1502 us
+17:47:51.524 PUB seq=20314 qos=1 publish=1509 us
+17:47:52.068 PUB seq=20315 qos=1 publish=1501 us
+17:47:52.177 RESUMEN uart=417 pub=404 ack=405 desc=14 wifi=SI mqtt=SI ultima_linea_hace=104 ms
+17:47:52.613 PUB seq=20316 qos=1 publish=1478 us
+17:47:53.054 PUB seq=20317 qos=1 publish=1503 us
+17:47:53.543 PUB seq=20318 qos=1 publish=1506 us
+17:47:54.103 PUB seq=20319 qos=1 publish=1501 us
+17:47:54.542 PUB seq=20320 qos=1 publish=1504 us
+17:47:55.087 PUB seq=20321 qos=1 publish=1261 us
+17:47:55.639 PUB seq=20322 qos=1 publish=1504 us
+17:47:56.076 PUB seq=20323 qos=1 publish=1503 us
+17:47:56.621 PUB seq=20324 qos=1 publish=1505 us
+17:47:57.060 PUB seq=20325 qos=1 publish=1504 us
+17:47:57.172 RESUMEN uart=427 pub=414 ack=415 desc=14 wifi=SI mqtt=SI ultima_linea_hace=64 ms
+17:47:57.609 PUB seq=20326 qos=1 publish=1504 us
+17:47:58.157 PUB seq=20327 qos=1 publish=1500 us
+17:47:58.592 PUB seq=20328 qos=1 publish=1505 us
+17:47:59.137 PUB seq=20329 qos=1 publish=1504 us
+17:47:59.680 PUB seq=20330 qos=1 publish=1505 us
+17:48:00.115 PUB seq=20331 qos=1 publish=1503 us
+17:48:00.662 PUB seq=20332 qos=1 publish=1506 us
+17:48:01.096 PUB seq=20333 qos=1 publish=1504 us
+17:48:01.647 PUB seq=20334 qos=1 publish=1261 us
+17:48:02.197 PUB seq=20335 qos=1 publish=1503 us
+17:48:02.197 RESUMEN uart=437 pub=424 ack=425 desc=14 wifi=SI mqtt=SI ultima_linea_hace=23 ms
+17:48:02.635 PUB seq=20336 qos=1 publish=1505 us
+17:48:03.179 PUB seq=20337 qos=1 publish=1505 us
