@@ -41,6 +41,15 @@ Como la ESP32 no puede encender su radio, una ESP32-C3 SuperMini publica por ell
 
 La app muestra el estado de la puerta, si hay coche dentro y las lecturas del ultrasónico y del ToF, y avisa con notificaciones: *Se está abriendo la cochera*, *La cochera está abierta* y *Se cerró la cochera*.
 
+## Práctica 3: Random Forest, control bidireccional y dashboard
+
+- **Random Forest** (`backend/ml_service.py`, `backend/ml/`): clasifica cada telemetría en *Libre, Vehículo en acceso, Vehículo estacionado, Puerta en operación, Intrusión* o *Falla de sensor* a partir de `data` (ultrasónico, ToF, reed y apertura). Reentrenar: `python ml/entrenar_rf.py --db data/smartgate.db`.
+- **Persistencia** (`backend/db.py`): SQLAlchemy 2 asíncrono, tabla `eventos` con `id, sequence_id, variables_json, clase_predicha_rf, latencia_ms, fecha_registro`.
+- **Control Web → ESP32**: dashboard → WebSocket → FastAPI → MQTT `smartgate/cochera-01/control` → gateway → UART → ESP32. Necesita un cable más: **GPIO21 (TX) de la C3 → GPIO16 (RX2) de la ESP32**.
+- **Métricas**: L = t_recepción − t_envío (con desfase NTP corregido) y P = (1 − recibidos / (seq_máx − seq_mín + 1)) × 100.
+- **Dashboard** con Chart.js en `http://IP:8000/` (el de la práctica 2 sigue en `/v2`).
+- **Experimento de frecuencia**: `python experimentos/experimento_frecuencia.py --segundos 60 --salida ../docs/practica3/evidencias`.
+
 ## Contenido
 
 | Carpeta | Qué hay |

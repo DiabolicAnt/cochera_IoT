@@ -11,6 +11,7 @@
 #include <WiFi.h>
 #include <ArduinoJson.h>
 #include <mqtt_client.h>
+#include <esp_sntp.h>
 #include <sys/time.h>
 #include "SmartGate_Gateway_Config.h"
 
@@ -38,20 +39,47 @@ constexpr wifi_power_t TX_POTENCIA = WIFI_POWER_8_5dBm;
 esp_mqtt_client_handle_t mqtt = nullptr;
 volatile bool mqttConectado = false;
 volatile uint32_t confirmados = 0;  // PUBACK recibidos (solo QoS 1).
-char gatewayId[17], topicDatos[64], topicEstado[64], ultimaVoluntad[128];
+char gatewayId[17], topicDatos[64], topicEstado[64], topicControl[64], ultimaVoluntad[128];
+volatile uint32_t comandosReenviados = 0;
 char linea[LINEA_MAX];
 size_t largo = 0;
 bool lineaDescartada = false, wifiAnunciada = false;
 uint32_t recibidos = 0, publicados = 0, descartados = 0, ultimoPublishUs = 0, ultimaLineaMs = 0;
 char salida[1600];
 
-void eventoMqtt(void*, esp_event_base_t, int32_t id, void*) {
+// Practica 3: comando del dashboard {"id":N,"accion":"abrir","valor":null} -> "CMD N abrir" por UART.
+void reenviarComando(const char* datos, int largoDatos) {
+  JsonDocument cmd;
+  if (deserializeJson(cmd, datos, largoDatos) || !cmd["id"].is<uint32_t>() || !cmd["accion"].is<const char*>()) {
+    Serial.println("Comando MQTT no valido, descartado."); return;
+  }
+  char lineaCmd[64];
+  if (cmd["valor"].is<int>()) {
+    snprintf(lineaCmd, sizeof(lineaCmd), "CMD %lu %s %d", (unsigned long)cmd["id"].as<uint32_t>(),
+             cmd["accion"].as<const char*>(), cmd["valor"].as<int>());
+  } else {
+    snprintf(lineaCmd, sizeof(lineaCmd), "CMD %lu %s", (unsigned long)cmd["id"].as<uint32_t>(), cmd["accion"].as<const char*>());
+  }
+  Serial1.println(lineaCmd);
+  comandosReenviados = comandosReenviados + 1;
+  Serial.printf("CMD -> ESP32: %s\n", lineaCmd);
+}
+
+void eventoMqtt(void*, esp_event_base_t, int32_t id, void* datos) {
+  const auto evento = static_cast<esp_mqtt_event_handle_t>(datos);
   if (id == MQTT_EVENT_CONNECTED) {
     mqttConectado = true;
     char online[128];
     snprintf(online, sizeof(online), "{\"node_id\":\"%s\",\"boot_id\":\"%s\",\"online\":true}", NODE_ID, gatewayId);
     esp_mqtt_client_publish(mqtt, topicEstado, online, 0, 1, 1);
-    Serial.println("MQTT conectado.");
+    esp_mqtt_client_subscribe(mqtt, topicControl, 1);
+    Serial.println("MQTT conectado; suscrito a control.");
+  } else if (id == MQTT_EVENT_DATA) {
+    // Un comando cabe en un solo fragmento; topic_len > 0 marca el inicio del mensaje.
+    if (evento->topic_len == (int)strlen(topicControl) && strncmp(evento->topic, topicControl, evento->topic_len) == 0 &&
+        evento->current_data_offset == 0 && evento->data_len == evento->total_data_len) {
+      reenviarComando(evento->data, evento->data_len);
+    }
   } else if (id == MQTT_EVENT_DISCONNECTED) {
     mqttConectado = false;
     Serial.println("MQTT desconectado; reintentando.");
@@ -63,6 +91,7 @@ void eventoMqtt(void*, esp_event_base_t, int32_t id, void*) {
 void iniciarMqtt() {
   snprintf(topicDatos, sizeof(topicDatos), "smartgate/%s/telemetry", NODE_ID);
   snprintf(topicEstado, sizeof(topicEstado), "smartgate/%s/status", NODE_ID);
+  snprintf(topicControl, sizeof(topicControl), "smartgate/%s/control", NODE_ID);
   snprintf(ultimaVoluntad, sizeof(ultimaVoluntad), "{\"node_id\":\"%s\",\"boot_id\":\"%s\",\"online\":false}", NODE_ID, gatewayId);
   static char clientId[48];
   snprintf(clientId, sizeof(clientId), "smartgate-gw-%s", gatewayId);
@@ -88,8 +117,12 @@ void publicar() {
   ++recibidos;
   timeval reloj{}; gettimeofday(&reloj, nullptr);
   const bool sincronizado = reloj.tv_sec >= 1700000000;
-  doc["timestamp"] = nullptr;
-  if (sincronizado) doc["timestamp"] = uint64_t(reloj.tv_sec) * 1000 + reloj.tv_usec / 1000;
+  doc["timestamp"] = nullptr; doc["timestamp_ms"] = nullptr;
+  if (sincronizado) {
+    // t_envio de la practica 3: hora NTP en el momento de publicar (L = t_recepcion - t_envio).
+    const uint64_t ahoraMs = uint64_t(reloj.tv_sec) * 1000 + reloj.tv_usec / 1000;
+    doc["timestamp"] = ahoraMs; doc["timestamp_ms"] = ahoraMs;
+  }
   doc["time_synced"] = sincronizado;
   JsonObject red = doc["network"].to<JsonObject>();
   red["wifi_connected"] = WiFi.status() == WL_CONNECTED;
@@ -131,7 +164,7 @@ void setup() {
   Serial1.begin(115200, SERIAL_8N1, UART_RX_PIN, UART_TX_PIN);
   snprintf(gatewayId, sizeof(gatewayId), "%08lx%08lx", (unsigned long)esp_random(), (unsigned long)esp_random());
   delay(300);
-  Serial.printf("\n=== SMARTGATE GATEWAY C3 | QoS %d | TX %.1f dBm | %s ===\n", QOS, TX_POTENCIA / 4.0f, GW_MQTT_URI);
+  Serial.printf("\n=== SMARTGATE GATEWAY C3 | QoS %d | TX %.1f dBm | %s ===\n", QOS, static_cast<int>(TX_POTENCIA) / 4.0f, GW_MQTT_URI);
   if (strcmp(GW_WIFI_SSID, "TU_RED_WIFI") == 0) {
     Serial.println("Configura SmartGate_Gateway_Config.local.h con tu WiFi y la IP del broker.");
   }
@@ -153,6 +186,8 @@ void loop() {
   const uint32_t now = millis();
   if (WiFi.status() == WL_CONNECTED && !wifiAnunciada) {
     wifiAnunciada = true;
+    // Resincronizar cada minuto: el reloj de la C3 se desvia ~100 ms por hora y t_envio debe ser fiable.
+    sntp_set_sync_interval(60000);
     configTime(0, 0, "pool.ntp.org", "time.google.com");
     Serial.printf("WiFi conectado: IP %s, RSSI %d dBm\n", WiFi.localIP().toString().c_str(), WiFi.RSSI());
   } else if (WiFi.status() != WL_CONNECTED && wifiAnunciada) {
@@ -161,9 +196,9 @@ void loop() {
   static uint32_t ultimoResumen = 0;
   if (now - ultimoResumen >= 5000) {
     ultimoResumen = now;
-    Serial.printf("RESUMEN uart=%lu pub=%lu ack=%lu desc=%lu wifi=%s mqtt=%s rssi=%d loop_max=%lu us ultima_linea_hace=%lu ms\n",
+    Serial.printf("RESUMEN uart=%lu pub=%lu ack=%lu desc=%lu cmd=%lu wifi=%s mqtt=%s rssi=%d loop_max=%lu us ultima_linea_hace=%lu ms\n",
                   (unsigned long)recibidos, (unsigned long)publicados, (unsigned long)confirmados,
-                  (unsigned long)descartados, WiFi.status() == WL_CONNECTED ? "SI" : "NO",
+                  (unsigned long)descartados, (unsigned long)comandosReenviados, WiFi.status() == WL_CONNECTED ? "SI" : "NO",
                   mqttConectado ? "SI" : "NO", WiFi.RSSI(), (unsigned long)loopMaxUs,
                   (unsigned long)(now - ultimaLineaMs));
     loopMaxUs = 0;

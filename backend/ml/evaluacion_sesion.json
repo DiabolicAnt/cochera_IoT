@@ -1,0 +1,40 @@
+{
+ "lecturas_sesion": 1492,
+ "exactitud_v1": 1.0,
+ "exactitud_v2": 1.0,
+ "confianza_media": {
+  "Libre": {
+   "v1": 0.942,
+   "v2": 0.966
+  },
+  "Vehículo en acceso": {
+   "v1": 1.0,
+   "v2": 0.814
+  },
+  "Puerta en operación": {
+   "v1": 0.963,
+   "v2": 0.999
+  },
+  "Vehículo estacionado": {
+   "v1": 0.411,
+   "v2": 1.0
+  },
+  "Intrusión": {
+   "v1": 0.999,
+   "v2": 0.999
+  },
+  "Falla de sensor": {
+   "v1": 0.984,
+   "v2": 0.999
+  }
+ },
+ "errores_v1": {},
+ "referencia_por_clase": {
+  "Libre": 673,
+  "Vehículo en acceso": 5,
+  "Puerta en operación": 254,
+  "Vehículo estacionado": 246,
+  "Intrusión": 18,
+  "Falla de sensor": 296
+ }
+}

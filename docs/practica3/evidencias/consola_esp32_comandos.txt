@@ -1,0 +1,36 @@
+00:15:11.403 CMD #2995297 remoto: manual
+00:15:11.403 Modo MANUAL: solo abrir/cerrar por comando.
+00:15:11.736 [CERRADA|MANUAL] reed=CERRADA | ultra=1469 mm | tof=131 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+00:15:12.748 [CERRADA|MANUAL] reed=CERRADA | ultra=1469 mm | tof=124 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+00:15:13.665 [CERRADA|MANUAL] reed=CERRADA | ultra=1469 mm | tof=149 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+00:15:14.441 CMD #2995298 remoto: abrir
+00:15:14.441 >> ABRIENDO: comando manual
+00:15:14.441 ToF: carro dentro de la cochera.
+00:15:14.768 [ABRIENDO|MANUAL] reed=CERRADA | ultra=1468 mm | tof=132 mm | carro_dentro=NO | rearmado=NO | servo=97 grados ON
+00:15:15.096 Reed: puerta ABIERTA
+00:15:15.752 [ABRIENDO|MANUAL] reed=ABIERTA | ultra=1460 mm | tof=143 mm | carro_dentro=NO | rearmado=NO | servo=123 grados ON
+00:15:16.746 [ABRIENDO
+00:15:16.856 |MANUAL] reed=ABIERTA | ultra=1468 mm | tof=119 mm | carro_dentro=NO | rearmado=NO | servo=149 grados ON
+00:15:17.839 [ABRIENDO|MANUAL] reed=ABIERTA | ultra=1460 mm | tof=162 mm | carro_dentro=NO | rearmado=NO | servo=175 grados ON
+00:15:18.056 ABIERTA.
+00:15:18.818 [ABIERTA|MANUAL] reed=ABIERTA | ultra=1460 mm | tof=109 mm | carro_dentro=NO | rearmado=NO | servo=180 grados ON
+00:15:19.826 [ABIERTA|MANUAL] reed=ABIERTA | ultra=1477 mm | tof=144 mm | carro_dentro=NO | rearmado=NO | servo=180 grados ON
+00:15:20.509 CMD #2995299 remoto: cerrar
+00:15:20.509 >> CERRANDO: comando manual
+00:15:20.836 [CERRANDO|MANUAL] reed=ABIERTA | ultra=1460 mm | tof=133 mm | carro_dentro=NO | rearmado=NO | servo=170 grados ON
+00:15:21.922 [CERRANDO|MANUAL] reed=ABIERTA | ultra=1460 mm | tof=137 mm | carro_dentro=NO | rearmado=NO | servo=144 grados ON
+00:15:22.915 [CERRANDO|MANUAL] reed=ABIERTA | ultra=1477 mm | tof=121 mm | carro_dentro=NO | rearmado=NO | servo=118 grados ON
+00:15:23.676 Reed: puerta CERRADA
+00:15:24.002 [CERRANDO|MANUAL] reed=CERRADA | ultra=1473 mm | tof=135 mm | carro_dentro=NO | rearmado=NO | servo=92 grados ON
+00:15:24.111 CERRADA: el reed confirma el cierre.
+00:15:24.111 Entrada libre: listo para el siguiente carro.
+00:15:24.997 [CERRADA|MANUAL] reed=CERRADA | ultra=1469 mm | tof=154 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+00:15:25.992 [CERRADA|MANUAL] reed=CERRADA | ultra=1460 mm | tof=118 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+00:15:26.973 [CERRADA|MANUAL] reed=CERRADA | ultra=1460 mm | tof=129 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+00:15:27.955 [CERRADA|MANUAL] reed=CERRADA | ultra=1460 mm | tof=148 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+00:15:28.515 CMD #2995300 remoto: auto
+00:15:28.515 Modo AUTO.
+00:15:28.966 [CERRADA|AUTO] reed=CERRADA | ultra=1469 mm | tof=124 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+00:15:29.962 [CERRADA|AUTO] reed=CERRADA | ultra=1447 mm | tof=109 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+00:15:30.942 [CERRADA|AUTO] reed=CERRADA | ultra=1460 mm | tof=106 mm | carro_dentro=NO | rearmado=SI | servo=90 grados ON
+

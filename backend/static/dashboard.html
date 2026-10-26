@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartGate · Dashboard IoT</title>
+  <link rel="icon" href="/static/icon.svg">
+  <link rel="stylesheet" href="/static/dashboard.css">
+  <script defer src="/static/chart.umd.min.js"></script>
+  <script defer src="/static/dashboard.js"></script>
+</head>
+<body>
+<main class="shell">
+  <header class="topbar">
+    <div class="brand"><span class="logo">SG</span><div><strong>SmartGate</strong><span>Dashboard IoT · cochera-01</span></div></div>
+    <div class="pills"><span id="pillWs" class="pill">WebSocket</span><span id="pillBroker" class="pill">Broker</span><span id="pillNodo" class="pill">Cochera</span></div>
+  </header>
+
+  <section class="grid-top">
+    <article class="card rf" id="cardRf">
+      <span class="eyebrow">DIAGNÓSTICO RANDOM FOREST</span>
+      <strong id="rfClase">Esperando datos</strong>
+      <span id="rfDetalle">Probabilidad — · inferencia — µs</span>
+    </article>
+    <article class="card">
+      <span class="eyebrow">PUERTA</span>
+      <strong id="puerta">—</strong>
+      <span id="puertaDetalle">—</span>
+      <span id="coche" class="chip">—</span>
+    </article>
+    <article class="card metric"><span class="eyebrow">LATENCIA L</span><strong id="latActual">—</strong><span id="latDetalle">promedio — · p95 —</span></article>
+    <article class="card metric"><span class="eyebrow">PÉRDIDA P</span><strong id="perdida">—</strong><span id="perdidaDetalle">— recibidos</span></article>
+  </section>
+
+  <section class="grid-charts">
+    <article class="card chart-card">
+      <div class="card-head"><div><span class="eyebrow">SENSORES EN TIEMPO REAL</span><h2>Distancias (mm)</h2></div><span id="valoresSensores" class="mono">—</span></div>
+      <div class="chart-box"><canvas id="graficaSensores"></canvas></div>
+    </article>
+    <article class="card chart-card">
+      <div class="card-head"><div><span class="eyebrow">RED</span><h2>Latencia de extremo a extremo (ms)</h2></div><span id="periodo" class="mono">—</span></div>
+      <div class="chart-box"><canvas id="graficaLatencia"></canvas></div>
+    </article>
+  </section>
+
+  <section class="card historial-card">
+    <div class="card-head"><div><span class="eyebrow">RESPUESTA DEL MODELO</span><h2>Cambios de diagnóstico del Random Forest</h2></div><span class="mono">más reciente a la izquierda</span></div>
+    <ol id="historialRf" class="historial"><li class="vacio">Cada vez que cambie la clase aparecerá aquí, con las lecturas que la provocaron.</li></ol>
+  </section>
+
+  <section class="grid-bottom">
+    <article class="card">
+      <span class="eyebrow">CONTROL BIDIRECCIONAL · WEB → ESP32</span>
+      <div class="botones">
+        <button data-accion="abrir" class="primario">Abrir puerta</button>
+        <button data-accion="cerrar" class="primario">Cerrar puerta</button>
+        <button data-accion="auto">Modo automático</button>
+        <button data-accion="manual">Modo manual</button>
+      </div>
+      <span class="eyebrow sub">FRECUENCIA DE ENVÍO DE LA ESP32</span>
+      <div class="botones segmentado">
+        <button data-accion="periodo" data-valor="100">100 ms</button>
+        <button data-accion="periodo" data-valor="500">500 ms</button>
+        <button data-accion="periodo" data-valor="1000">1000 ms</button>
+        <button id="reiniciar" class="discreto">Reiniciar L y P</button>
+      </div>
+      <ol id="bitacora" class="bitacora"><li class="vacio">Los comandos enviados aparecerán aquí con su confirmación.</li></ol>
+    </article>
+    <article class="card">
+      <div class="card-head"><div><span class="eyebrow">PERSISTENCIA · SQLAlchemy async (SQLite)</span><h2>Tabla eventos</h2></div><span class="mono">últimos 10</span></div>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>id</th><th>sequence_id</th><th>variables_json</th><th>clase_predicha_rf</th><th>latencia_ms</th><th>fecha_registro</th></tr></thead>
+        <tbody id="tablaEventos"><tr><td colspan="6" class="vacio">Sin registros todavía.</td></tr></tbody>
+      </table></div>
+    </article>
+  </section>
+  <footer>ESP32 → gateway C3 → MQTT → FastAPI (Random Forest + SQLAlchemy) → WebSocket · <a href="/v2">dashboard anterior</a></footer>
+</main>
+</body>
+</html>

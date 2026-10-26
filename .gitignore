@@ -1,3 +1,6 @@
+# Base de datos local del backend (historial de la maqueta).
+backend/data/
+
 # Credenciales locales (WiFi, broker): nunca subirlas.
 *.local.h
 

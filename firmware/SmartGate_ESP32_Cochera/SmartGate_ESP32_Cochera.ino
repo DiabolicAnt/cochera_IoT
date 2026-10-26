@@ -50,8 +50,10 @@ constexpr uint32_t ECO_SIN_OBJETO_US = 25000;  // Pulso mas largo (~4 m): nada e
 constexpr uint16_t TOF_ALCANCE_MM = 2000;      // Mas lejos (8190/8191): interior vacio.
 
 // Telemetria hacia el gateway C3: UART2 solo TX, mismo GND en ambas placas.
-constexpr uint8_t TELEMETRIA_TX_PIN = 17;
-constexpr uint32_t TELEMETRIA_MS = 500;
+// Practica 3: RX2 (GPIO16) recibe del gateway los comandos que llegan por MQTT desde el dashboard.
+constexpr uint8_t TELEMETRIA_TX_PIN = 17, COMANDOS_RX_PIN = 16;
+uint32_t periodoTelemetriaMs = 500;  // 100, 500 o 1000 ms; se cambia con el comando "periodo".
+uint32_t ultimoCmd = 0;              // id del ultimo comando remoto ejecutado (confirmacion al backend).
 constexpr char NODE_ID[] = "cochera-01";
 
 enum class Estado { CERRADA, ABRIENDO, ABIERTA, CERRANDO, ALERTA };
@@ -286,7 +288,7 @@ void lectura(JsonObject o, bool valida, uint16_t crudo, const MediaMovil& media,
 }
 
 void enviarTelemetria(uint32_t now) {
-  if (now - ultimaTelemetriaMs < TELEMETRIA_MS) return;
+  if (now - ultimaTelemetriaMs < periodoTelemetriaMs) return;
   ultimaTelemetriaMs = now;
   JsonDocument doc;
   doc["schema_version"] = 1; doc["node_id"] = NODE_ID; doc["boot_id"] = bootId;
@@ -301,6 +303,18 @@ void enviarTelemetria(uint32_t now) {
   JsonObject vehiculo = doc["vehicle"].to<JsonObject>();
   vehiculo["inside"] = carroDentro(); vehiculo["arrival"] = carroLlego;
   vehiculo["rearmed"] = rearmado; vehiculo["exterior_clear"] = exteriorLibre.cumplida(now, LIBRE_MS);
+  // Vector multivariable para el Random Forest: sin objeto = alcance maximo; lectura invalida = null.
+  JsonObject data = doc["data"].to<JsonObject>();
+  if (ultraOk && mediaUltra.cantidad()) data["ultrasonico_mm"] = roundf(mediaUltra.promedio() * 10) / 10;
+  else if (ultraOk && errorUltra && strcmp(errorUltra, "SIN_OBJETO") == 0) data["ultrasonico_mm"] = 4000;
+  else data["ultrasonico_mm"] = nullptr;
+  if (tofOk && mediaTof.cantidad()) data["tof_mm"] = roundf(mediaTof.promedio() * 10) / 10;
+  else if (tofOk && errorTof && strcmp(errorTof, "SIN_OBJETO") == 0) data["tof_mm"] = 2000;
+  else data["tof_mm"] = nullptr;
+  data["reed_cerrado"] = reedCerrado ? 1 : 0;
+  data["apertura_pct"] = abs(gradosActual - CERRADO_GRADOS) * 100 / abs(ABIERTO_GRADOS - CERRADO_GRADOS);
+  JsonObject control = doc["control"].to<JsonObject>();
+  control["periodo_ms"] = periodoTelemetriaMs; control["ultimo_cmd"] = ultimoCmd;
   serializeJson(doc, Serial2);
   Serial2.write('\n');
 }
@@ -326,14 +340,19 @@ void comando(String cmd) {
   else if (cmd == "cerrar") cerrar("comando manual");
   else if (cmd == "auto") { automatico = true; Serial.println("Modo AUTO."); }
   else if (cmd == "manual") { automatico = false; Serial.println("Modo MANUAL: solo abrir/cerrar por comando."); }
-  else if (cmd.length() > 1 && cmd[0] == 'g') {
+  else if (cmd.startsWith("periodo ")) {
+    const long ms = cmd.substring(8).toInt();
+    if (ms != 100 && ms != 500 && ms != 1000) { Serial.println("periodo admite 100, 500 o 1000 ms"); return; }
+    periodoTelemetriaMs = ms;
+    Serial.printf("Telemetria cada %ld ms.\n", ms);
+  } else if (cmd.length() > 1 && cmd[0] == 'g') {
     const int g = cmd.substring(1).toInt();
     if (g < 0 || g > 180 || !isDigit(cmd[1])) { Serial.println("Formato: g0 .. g180"); return; }
     automatico = false; estado = Estado::ALERTA;
     gradosActual = gradosObjetivo = g; servoEscribir(g);
     Serial.printf("CALIBRACION: servo a %d grados (modo MANUAL). Escribe cerrar y luego auto para seguir.\n", g);
   } else if (cmd.length()) {
-    Serial.println("Comandos: estado, abrir, cerrar, auto, manual, gNN (calibrar angulo)");
+    Serial.println("Comandos: estado, abrir, cerrar, auto, manual, periodo 100|500|1000, gNN (calibrar angulo)");
   }
 }
 
@@ -345,6 +364,31 @@ void leerSerie() {
   }
 }
 
+// Comandos remotos del gateway: "CMD <id> <accion> [valor]". Solo se aceptan las acciones del
+// dashboard (la calibracion gNN queda solo por USB). El id se reporta en control.ultimo_cmd.
+String lineaGateway;
+void leerGateway() {
+  while (Serial2.available()) {
+    const char c = Serial2.read();
+    if (c != '\n') {
+      if (c != '\r' && lineaGateway.length() < 48) lineaGateway += c;
+      continue;
+    }
+    String l = lineaGateway; lineaGateway = "";
+    if (!l.startsWith("CMD ")) continue;
+    const int espacio = l.indexOf(' ', 4);
+    if (espacio < 0) continue;
+    const uint32_t id = strtoul(l.substring(4, espacio).c_str(), nullptr, 10);
+    String accion = l.substring(espacio + 1); accion.trim();
+    if (!(accion == "abrir" || accion == "cerrar" || accion == "auto" || accion == "manual" || accion.startsWith("periodo "))) {
+      Serial.printf("CMD #%lu ignorado: %s\n", (unsigned long)id, accion.c_str()); continue;
+    }
+    Serial.printf("CMD #%lu remoto: %s\n", (unsigned long)id, accion.c_str());
+    comando(accion);
+    ultimoCmd = id;
+  }
+}
+
 void setup() {
   Serial.begin(115200);
 #if ARDUINO_USB_CDC_ON_BOOT
@@ -352,7 +396,7 @@ void setup() {
 #endif
   // Buffer amplio: un JSON (~550 bytes) no bloquea el loop mientras sale por UART2.
   Serial2.setTxBufferSize(2048);
-  Serial2.begin(115200, SERIAL_8N1, -1, TELEMETRIA_TX_PIN);
+  Serial2.begin(115200, SERIAL_8N1, COMANDOS_RX_PIN, TELEMETRIA_TX_PIN);
   snprintf(bootId, sizeof(bootId), "%08lx%08lx", (unsigned long)esp_random(), (unsigned long)esp_random());
   delay(300);
   Serial.println("\n=== SMARTGATE ESP32 GRANDE | sin BLE | telemetria UART2 -> C3 ===");
@@ -366,7 +410,7 @@ void setup() {
   servoEscribir(CERRADO_GRADOS);
   Serial.printf("Abre si ultra <= %u mm; cierra con carro (ToF <= %u mm) y entrada >= %u mm por %lu ms.\n",
                 ULTRA_LLEGADA_MM, TOF_CARRO_MM, ULTRA_LIBRE_MM, static_cast<unsigned long>(LIBRE_MS));
-  Serial.println("Comandos: estado, abrir, cerrar, auto, manual, gNN");
+  Serial.println("Comandos: estado, abrir, cerrar, auto, manual, periodo 100|500|1000, gNN");
 }
 
 void loop() {
@@ -375,6 +419,7 @@ void loop() {
   leerUltrasonico(now);
   leerTof(now);
   leerSerie();
+  leerGateway();
   actualizarPuerta(now);
   enviarTelemetria(now);
   if (now - ultimoReporteMs >= 1000) { ultimoReporteMs = now; reporte(); }

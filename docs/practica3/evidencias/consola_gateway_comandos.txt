@@ -1,0 +1,48 @@
+00:15:11.398 CMD -> ESP32: CMD 2995297 manual
+00:15:11.627 PUB seq=1569 qos=1 publish=1500 us
+00:15:12.172 PUB seq=1570 qos=1 publish=1501 us
+00:15:12.622 PUB seq=1571 qos=1 publish=1507 us
+00:15:13.120 PUB seq=1572 qos=1 publish=1502 us
+00:15:13.664 PUB seq=1573 qos=1 publish=1500 us
+00:15:13.664 RESUMEN uart=9472 pub=9465 ack=9466 desc=7 cmd=11 wifi=SI mqtt=SI rssi=-45 loop_max=5116 us ultima_linea_hace=49 ms
+00:15:14.208 PUB seq=1574 qos=1 publish=1499 us
+00:15:14.440 CMD -> ESP32: CMD 2995298 abrir
+00:15:14.768 PUB seq=1575 qos=1 publish=1502 us
+00:15:15.203 PUB seq=1576 qos=1 publish=1260 us
+00:15:15.752 PUB seq=1577 qos=1 publish=1502 us
+00:15:16.296 PUB seq=1578 qos=1 publish=1503 us
+00:15:16.855 PUB seq=1579 qos=1 publish=1501 us
+00:15:17.292 PUB seq=1580 qos=1 publish=1503 us
+00:15:17.839 PUB seq=1581 qos=1 publish=1502 us
+00:15:18.274 PUB seq=1582 qos=1 publish=1507 us
+00:15:18.709 RESUMEN uart=9481 pub=9474 ack=9475 desc=7 cmd=12 wifi=SI mqtt=SI rssi=-44 loop_max=5237 us ultima_linea_hace=395 ms
+00:15:18.818 PUB seq=1583 qos=1 publish=1501 us
+00:15:19.267 PUB seq=1584 qos=1 publish=1502 us
+00:15:19.826 PUB seq=1585 qos=1 publish=1502 us
+00:15:20.259 PUB seq=1586 qos=1 publish=1502 us
+00:15:20.508 CMD -> ESP32: CMD 2995299 cerrar
+00:15:20.836 PUB seq=1587 qos=1 publish=1262 us
+00:15:21.381 PUB seq=1588 qos=1 publish=1500 us
+00:15:21.922 PUB seq=1589 qos=1 publish=1218 us
+00:15:22.467 PUB seq=1590 qos=1 publish=1502 us
+00:15:22.915 PUB seq=1591 qos=1 publish=1501 us
+00:15:23.458 PUB seq=1592 qos=1 publish=1501 us
+00:15:23.676 RESUMEN uart=9491 pub=9484 ack=9485 desc=7 cmd=13 wifi=SI mqtt=SI rssi=-44 loop_max=5297 us ultima_linea_hace=226 ms
+00:15:24.002 PUB seq=1593 qos=1 publish=1500 us
+00:15:24.437 PUB seq=1594 qos=1 publish=1267 us
+00:15:24.997 PUB seq=1595 qos=1 publish=1501 us
+00:15:25.434 PUB seq=1596 qos=1 publish=1509 us
+00:15:25.992 PUB seq=1597 qos=1 publish=1534 us
+00:15:26.429 PUB seq=1598 qos=1 publish=1537 us
+00:15:26.973 PUB seq=1599 qos=1 publish=1538 us
+00:15:27.410 PUB seq=1600 qos=1 publish=1537 us
+00:15:27.955 PUB seq=1601 qos=1 publish=1506 us
+00:15:28.411 PUB seq=1602 qos=1 publish=1498 us
+00:15:28.411 CMD -> ESP32: CMD 2995300 auto
+00:15:28.733 RESUMEN uart=9501 pub=9494 ack=9495 desc=7 cmd=14 wifi=SI mqtt=SI rssi=-43 loop_max=5301 us ultima_linea_hace=244 ms
+00:15:28.966 PUB seq=1603 qos=1 publish=1501 us
+00:15:29.418 PUB seq=1604 qos=1 publish=1502 us
+00:15:29.962 PUB seq=1605 qos=1 publish=1589 us
+00:15:30.506 PUB seq=1606 qos=1 publish=1501 us
+00:15:30.942 PUB seq=1607 qos=1 publish=1506 us
+

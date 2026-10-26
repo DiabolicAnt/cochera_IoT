@@ -57,6 +57,19 @@ class Network(Contract):
     publish_us: int | None = Field(default=None, ge=0, le=60_000_000)
 
 
+class Data(Contract):
+    """Vector multivariable de la practica 3 (entrada del Random Forest)."""
+    ultrasonico_mm: float | None = Field(ge=0, le=4000)   # 4000 = sin objeto; null = invalida
+    tof_mm: float | None = Field(ge=0, le=2000)           # 2000 = sin objeto; null = invalida
+    reed_cerrado: Literal[0, 1]
+    apertura_pct: float = Field(ge=0, le=100)
+
+
+class Control(Contract):
+    periodo_ms: int = Field(ge=50, le=10000)
+    ultimo_cmd: int = Field(ge=0, le=4294967295)  # id del ultimo comando ejecutado por la ESP32
+
+
 class Telemetry(Contract):
     schema_version: Literal[1]
     node_id: str = Field(pattern=r"^[A-Za-z0-9_-]{1,64}$")
@@ -72,6 +85,10 @@ class Telemetry(Contract):
     vehicle: Vehicle
     tag: Tag | None = None  # Sin BLE en la version con gateway C3.
     network: Network
+    # Practica 3: hora de envio (NTP del gateway), variables para el modelo y estado del canal de control.
+    timestamp_ms: int | None = Field(default=None, ge=1700000000000)
+    data: Data | None = None
+    control: Control | None = None
 
     @model_validator(mode="after")
     def clock_and_ranges(self):
@@ -80,6 +97,24 @@ class Telemetry(Contract):
         for reading, minimum, maximum in [(self.readings.exterior, 20, 4000), (self.readings.interior, 0, 2000)]:
             if reading.valid and not (minimum <= reading.raw_mm <= maximum and minimum <= reading.filtered_mm <= maximum):
                 raise ValueError("Distancia valida fuera del rango del sensor")
+        return self
+
+
+ACCIONES = ("abrir", "cerrar", "auto", "manual", "periodo")
+PERIODOS = (100, 500, 1000)
+
+
+class Comando(Contract):
+    """Orden del dashboard hacia la ESP32 (Web -> FastAPI -> MQTT -> gateway -> UART)."""
+    accion: Literal["abrir", "cerrar", "auto", "manual", "periodo"]
+    valor: int | None = None
+
+    @model_validator(mode="after")
+    def valor_valido(self):
+        if self.accion == "periodo" and self.valor not in PERIODOS:
+            raise ValueError("periodo admite 100, 500 o 1000 ms")
+        if self.accion != "periodo" and self.valor is not None:
+            raise ValueError("solo periodo lleva valor")
         return self
 
 

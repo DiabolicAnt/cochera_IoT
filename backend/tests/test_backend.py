@@ -17,7 +17,7 @@ class BackendTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory()
         self.db=Path(self.temp.name)/"test.db"
-        self.app=create_app(self.db,mqtt_enabled=False)
+        self.app=create_app(self.db,mqtt_enabled=False,sincronizar_reloj=False)
         self.client=TestClient(self.app);self.client.__enter__()
         self.data=sample("test-cochera","boot-a",0,time.monotonic(),{s:deque(maxlen=5) for s in ("exterior","interior")})
 
@@ -107,7 +107,7 @@ class BackendTests(unittest.TestCase):
 
     def test_restart_restores_history_and_offline_state(self):
         self.send()
-        second=create_app(self.db,mqtt_enabled=False)
+        second=create_app(self.db,mqtt_enabled=False,sincronizar_reloj=False)
         with TestClient(second) as other:
             self.assertEqual(len(other.get("/api/readings").json()),1)
             self.assertFalse(other.get("/health").json()["nodes"][0]["online"])
@@ -132,8 +132,61 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(self.client.post("/stats/reset").json(),{"reset":True})
         self.assertEqual(self.client.get("/stats").json()["nodes"],{})
 
+    def p3(self,seq,ultra=4000.0,tof=2000.0,reed=1,apertura=0.0,ultimo_cmd=0):
+        """Telemetria con los campos de la practica 3 (data, timestamp_ms y control)."""
+        d=json.loads(json.dumps(self.data));d["sequence_id"]=seq
+        d["timestamp_ms"]=d["timestamp"]
+        d["data"]={"ultrasonico_mm":ultra,"tof_mm":tof,"reed_cerrado":reed,"apertura_pct":apertura}
+        d["control"]={"periodo_ms":500,"ultimo_cmd":ultimo_cmd}
+        return d
+
+    def test_random_forest_and_orm_persistence(self):
+        casos=[(dict(),"Libre"),(dict(ultra=120.0),"Vehículo en acceso"),(dict(tof=80.0),"Vehículo estacionado"),
+               (dict(reed=0,apertura=60.0),"Puerta en operación"),(dict(reed=0),"Intrusión"),(dict(ultra=None),"Falla de sensor")]
+        for i,(campos,clase) in enumerate(casos):
+            self.assertTrue(self.send(self.p3(i,**campos)))
+        eventos=self.client.get("/api/eventos?node_id=test-cochera&limit=10").json()
+        self.assertEqual([e["clase_predicha_rf"] for e in reversed(eventos)],[c for _,c in casos])
+        self.assertEqual(json.loads(eventos[0]["variables_json"])["ultrasonico_mm"],None)
+        self.assertIsNotNone(eventos[0]["latencia_ms"]);self.assertIn("fecha_registro",eventos[0])
+        ultimo=self.client.get("/api/readings?node_id=test-cochera&limit=1").json()[0]
+        self.assertEqual(ultimo["rf"]["clase"],"Falla de sensor");self.assertIsNotNone(ultimo["rf"]["inferencia_us"])
+
+    def test_old_payload_gets_data_for_the_model(self):
+        self.assertTrue(self.send())
+        evento=self.client.get("/api/readings?limit=1").json()[0]
+        self.assertEqual(set(evento["data"]),{"ultrasonico_mm","tof_mm","reed_cerrado","apertura_pct"})
+        self.assertIsNotNone(evento["rf"]["clase"])
+
+    def test_control_command_confirmed_by_telemetry(self):
+        r=self.client.post("/api/control",json={"accion":"abrir","node_id":"test-cochera"}).json()
+        topic,mensaje=self.app.state.publicados[-1]
+        self.assertEqual((topic,mensaje["accion"]),("smartgate/test-cochera/control","abrir"))
+        self.assertEqual(self.client.post("/api/control",json={"accion":"periodo","valor":250}).status_code,422)
+        self.assertEqual(self.client.post("/api/control",json={"accion":"explotar"}).status_code,422)
+        with self.client.websocket_connect("/ws") as ws:
+            ws.receive_json()
+            ws.send_text(json.dumps({"tipo":"comando","accion":"periodo","valor":100,"node_id":"test-cochera"}))
+            for _ in range(5):
+                m=ws.receive_json()
+                if m["type"]=="comando":break
+            self.assertEqual((m["accion"],m["valor"],m["estado"]),("periodo",100,"enviado"))
+            self.send(self.p3(0,ultimo_cmd=m["id"]))
+            for _ in range(8):
+                m=ws.receive_json()
+                if m["type"]=="comando" and m["estado"]=="confirmado" and m["accion"]=="periodo":break
+            self.assertEqual(m["estado"],"confirmado");self.assertGreaterEqual(m["rtt_ms"],0)
+        self.assertLess(r["id"],m["id"])
+
+    def test_packet_loss_formula(self):
+        for seq in (10,11,12,15,16,19):  # 6 recibidos de 10 posibles: P = 40 %.
+            self.send(self.p3(seq))
+        node=self.client.get("/stats").json()["nodes"]["test-cochera"]
+        self.assertEqual((node["seq_min"],node["seq_max"],node["received"],node["p_pct"]),(10,19,6,40.0))
+        self.assertIsNotNone(node["latencia_prom_ms"]);self.assertIsNotNone(node["inferencia_us_prom"])
+
     def test_assets_and_query_bounds(self):
-        for path in ("/","/static/app.js","/static/manifest.webmanifest","/sw.js"):
+        for path in ("/","/v2","/static/app.js","/static/dashboard.js","/static/manifest.webmanifest","/sw.js"):
             self.assertEqual(self.client.get(path).status_code,200)
         self.assertEqual(self.client.get("/api/readings?limit=0").status_code,422)
         self.assertEqual(self.client.get("/api/readings?node_id=invalid/slash").status_code,422)

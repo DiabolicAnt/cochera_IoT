@@ -1,0 +1,149 @@
+{
+ "variables": [
+  "ultrasonico_mm",
+  "tof_mm",
+  "reed_cerrado",
+  "apertura_pct"
+ ],
+ "lecturas_reales_leidas": 22898,
+ "reales_por_clase": {
+  "Libre": 21887,
+  "Vehículo en acceso": 6,
+  "Vehículo estacionado": 273,
+  "Puerta en operación": 418,
+  "Intrusión": 18,
+  "Falla de sensor": 296
+ },
+ "dataset_por_clase": {
+  "Libre": 1500,
+  "Vehículo en acceso": 1500,
+  "Vehículo estacionado": 1500,
+  "Puerta en operación": 1500,
+  "Intrusión": 1500,
+  "Falla de sensor": 1500
+ },
+ "dataset_reales": 2511,
+ "dataset_sinteticas": 6489,
+ "entrenamiento": 7200,
+ "prueba": 1800,
+ "exactitud_prueba": 1.0,
+ "exactitud_prueba_solo_reales": 1.0,
+ "prueba_reales": 501,
+ "importancia_variables": {
+  "ultrasonico_mm": 0.2974,
+  "tof_mm": 0.3265,
+  "reed_cerrado": 0.1769,
+  "apertura_pct": 0.1992
+ },
+ "reporte": {
+  "Libre": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 300.0
+  },
+  "Vehículo en acceso": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 300.0
+  },
+  "Vehículo estacionado": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 300.0
+  },
+  "Puerta en operación": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 300.0
+  },
+  "Intrusión": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 300.0
+  },
+  "Falla de sensor": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 300.0
+  },
+  "accuracy": 1.0,
+  "macro avg": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 1800.0
+  },
+  "weighted avg": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 1800.0
+  }
+ },
+ "matriz_confusion": {
+  "clases": [
+   "Libre",
+   "Vehículo en acceso",
+   "Vehículo estacionado",
+   "Puerta en operación",
+   "Intrusión",
+   "Falla de sensor"
+  ],
+  "valores": [
+   [
+    300,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    300,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    300,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    300,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    300,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    300
+   ]
+  ]
+ }
+}
